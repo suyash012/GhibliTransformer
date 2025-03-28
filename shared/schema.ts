@@ -14,6 +14,7 @@ export const images = pgTable("images", {
   originalPath: text("original_path").notNull(),
   processedPath: text("processed_path"),
   status: text("status").notNull().default("pending"),
+  error: text("error"), // Add an error field to store error messages
   createdAt: text("created_at").notNull(), // Storing ISO string date
 });
 

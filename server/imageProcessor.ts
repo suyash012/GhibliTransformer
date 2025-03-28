@@ -23,10 +23,15 @@ const processedDir = path.join(uploadsDir, "processed");
 
 export async function processImage(image: Image): Promise<Image> {
   try {
+    console.log(`Starting to process image ${image.id} from ${image.originalPath}`);
+    
     const outputPath = path.join(processedDir, `processed_${path.basename(image.originalPath)}`);
+    console.log(`Output path set to: ${outputPath}`);
     
     // Transform image
+    console.log("Calling transformImageToGhibliStyle...");
     await transformImageToGhibliStyle(image.originalPath, outputPath);
+    console.log("Image transformation completed successfully");
     
     // Update image record with processed path
     const updatedImage = {
@@ -35,13 +40,17 @@ export async function processImage(image: Image): Promise<Image> {
       status: "completed",
     };
     
+    console.log("Updating image record in storage...");
     // Store the updated image record
     return storage.updateImage(image.id, updatedImage);
-  } catch (error) {
+  } catch (error: any) {
+    console.error(`Error processing image ${image.id}:`, error);
+    
     // Update status to error
     const updatedImage = {
       ...image,
       status: "error",
+      error: error.message || "Unknown error during image processing"
     };
     return storage.updateImage(image.id, updatedImage);
   }
