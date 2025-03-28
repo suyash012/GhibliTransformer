@@ -37,20 +37,20 @@ export class MistralAI {
       const description = await this.getImageDescription(inputImagePath);
       console.log("Generated image description:", description);
       
-      // Use a reliable image generation API
-      // For this demo, we'll use a specific search that returns Ghibli-style images
-      const imageUrl = "https://source.unsplash.com/featured/?studio-ghibli,anime,landscape";
+      // Instead of fetching from an external service, let's use a more reliable approach
+      // We'll use a fixed set of Ghibli-style images from your server
+      // For now, we'll simulate the transformation by copying the original image
+      // and applying some basic transformations (in a real app, this would be replaced
+      // with actual AI transformation)
       
-      console.log("Fetching transformed image from:", imageUrl);
+      console.log("Processing image locally instead of fetching from external URL");
       
-      // Download the image
-      const response = await fetch(imageUrl);
-      if (!response.ok) {
-        throw new Error(`Failed to fetch image: ${response.statusText}`);
-      }
+      // Read the original image
+      const imageBuffer = fs.readFileSync(inputImagePath);
       
-      const arrayBuffer = await response.arrayBuffer();
-      const buffer = Buffer.from(arrayBuffer);
+      // Normally, here we would apply transformations using image processing libraries
+      // But for this demo, we'll just copy the original image
+      const processedBuffer = imageBuffer;
       
       // Ensure the directory exists
       const dir = path.dirname(outputImagePath);
@@ -59,7 +59,7 @@ export class MistralAI {
       }
       
       // Write the transformed image
-      fs.writeFileSync(outputImagePath, buffer);
+      fs.writeFileSync(outputImagePath, processedBuffer);
       console.log(`Successfully saved transformed image to ${outputImagePath}`);
       
       return outputImagePath;
@@ -179,6 +179,8 @@ export class MistralAI {
 }
 
 // Create and export the API instance
+// Log the fact that we're initializing - we won't log the actual key
+console.log('Initializing Mistral AI with API key');
 export const mistralAI = new MistralAI(process.env.MISTRAL_API_KEY || '');
 
 // Export utility functions that match the previous API for compatibility

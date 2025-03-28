@@ -9,6 +9,7 @@ export interface ImageData {
   originalFileName: string;
   originalUrl?: string;
   processedUrl?: string;
+  error?: string; // Add error field
   analysis?: {
     description: string;
     styleNotes: string[];
@@ -42,7 +43,7 @@ export function useImageProcessing() {
   });
 
   // Get image status query
-  const imageQuery = useQuery({
+  const imageQuery = useQuery<ImageData>({
     queryKey: currentImageId ? [`/api/images/${currentImageId}`] : [],
     enabled: !!currentImageId,
     refetchInterval: (data) => {

@@ -1,0 +1,57 @@
+Starting to process image 1 from C:\Users\mayan\Downloads\GhibliTransformer-main (1)\GhibliTransformer-main\uploads\original\1743156421826-68124487-20221225_155658.jpg
+Output path set to: C:\Users\mayan\Downloads\GhibliTransformer-main (1)\GhibliTransformer-main\uploads\processed\processed_1743156421826-68124487-20221225_155658.jpg
+Calling transformImageToGhibliStyle...
+Starting image transformation from C:\Users\mayan\Downloads\GhibliTransformer-main (1)\GhibliTransformer-main\uploads\original\1743156421826-68124487-20221225_155658.jpg to C:\Users\mayan\Downloads\GhibliTransformer-main (1)\GhibliTransformer-main\uploads\processed\processed_1743156421826-68124487-20221225_155658.jpg  
+Analyzing image at C:\Users\mayan\Downloads\GhibliTransformer-main (1)\GhibliTransformer-main\uploads\original\1743156421826-68124487-20221225_155658.jpg       
+Image size: 2873036 bytes
+3:37:02 PM [express] POST /api/images/upload 200 in 564ms :: {"id":1,"status":"pending","originalFil…
+Error getting image description: SDKError: API error occurred: Status 401 Content-Type application/json; charset=utf-8 Body 
+{
+  "message":"No API key found in request",
+  "request_id":"fb644e7ecf821a4654f1a95b2e064a40"
+}
+    at matchFunc (C:\Users\mayan\Downloads\GhibliTransformer-main (1)\GhibliTransformer-main\node_modules\@mistralai\mistralai\src\lib\matchers.ts:236:16)      
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at $do (C:\Users\mayan\Downloads\GhibliTransformer-main (1)\GhibliTransformer-main\node_modules\@mistralai\mistralai\src\funcs\chatComplete.ts:139:20) {    
+  rawResponse: Response {
+    status: 401,
+    statusText: 'Unauthorized',
+    headers: Headers {
+      date: 'Fri, 28 Mar 2025 10:07:01 GMT',
+      'content-type': 'application/json; charset=utf-8',
+      'content-length': '96',
+      connection: 'keep-alive',
+      'www-authenticate': 'Key',
+      'access-control-allow-origin': '*',
+      'x-kong-response-latency': '0',
+      'x-kong-request-id': 'fb644e7ecf821a4654f1a95b2e064a40',
+      'cf-cache-status': 'DYNAMIC',
+      'set-cookie': '__cf_bm=djPtI69.YEI0_VMieEgPHH5H2e7QsLknA06pH4LSM_o-1743156421-1.0.1.1-a5IbRNiA6mZ1lEY0npXOeI7MQg_6FCnCnW1Vn2kB0adzDqvAS97VY6dEFj5CrXZxz6eu3jTcjr.Zj1.XyNJKBsy84ezFcwxlU6IKnbnUrYs; path=/; expires=Fri, 28-Mar-25 10:37:01 GMT; domain=.mistral.ai; HttpOnly; Secure; SameSite=None',
+      server: 'cloudflare',
+      'cf-ray': '927651736baf9198-DEL',
+      'alt-svc': 'h3=":443"; ma=86400'
+    },
+    body: ReadableStream { locked: true, state: 'closed', supportsBYOB: true },
+    bodyUsed: true,
+    ok: false,
+    redirected: false,
+    type: 'basic',
+    url: 'https://api.mistral.ai/v1/chat/completions'
+  },
+  body: '{\n' +
+    '  "message":"No API key found in request",\n' +
+    '  "request_id":"fb644e7ecf821a4654f1a95b2e064a40"\n' +
+    '}',
+  statusCode: 401,
+  contentType: 'application/json; charset=utf-8'
+}
+Generated image description: Image to be transformed into Ghibli style
+Fetching transformed image from: https://source.unsplash.com/featured/?studio-ghibli,anime,landscape
+Error transforming image: Error: Failed to fetch image: Not Found
+    at MistralAI.transformImageToGhibliStyle (C:\Users\mayan\Downloads\GhibliTransformer-main (1)\GhibliTransformer-main\server\mistralai.ts:49:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at processImage (C:\Users\mayan\Downloads\GhibliTransformer-main (1)\GhibliTransformer-main\server\imageProcessor.ts:33:5)
+Error processing image 1: Error: Failed to transform image: Failed to fetch image: Not Found
+    at MistralAI.transformImageToGhibliStyle (C:\Users\mayan\Downloads\GhibliTransformer-main (1)\GhibliTransformer-main\server\mistralai.ts:68:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at processImage (C:\Users\mayan\Downloads\GhibliTransformer-main (1)\GhibliTransformer-main\server\imageProcessor.ts:33:5)

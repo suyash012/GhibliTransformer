@@ -95,6 +95,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
         originalFileName: image.originalFileName
       };
 
+      // Include error message if there was one
+      if (image.status === 'error' && image.error) {
+        result.error = image.error;
+        console.log("Image has error:", image.error);
+      }
+
       // Add paths if processing is complete
       if (image.status === 'completed') {
         console.log("Image processing completed, generating URLs");
