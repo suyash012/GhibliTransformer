@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useImageProcessing } from "../hooks/useImageProcessing";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
@@ -23,7 +23,7 @@ export default function Home() {
   } = useImageProcessing();
 
   // Update app state based on image processing status
-  useState(() => {
+  useEffect(() => {
     if (isUploading || isProcessing) {
       setAppState("processing");
     } else if (isCompleted) {
@@ -31,7 +31,7 @@ export default function Home() {
     } else if (isError) {
       setAppState("error");
     }
-  });
+  }, [isUploading, isProcessing, isCompleted, isError]);
 
   const handleUploadStart = () => {
     setAppState("processing");
