@@ -1,0 +1,1 @@
+import { Mistral } from '@mistralai/mistralai'; const mistral = new Mistral({apiKey: 'dummy'}); for (let prop of Object.getOwnPropertyNames(Object.getPrototypeOf(mistral))) { if (prop !== 'constructor' && typeof mistral[prop] === 'function') console.log(prop); }
